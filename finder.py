@@ -1,93 +1,103 @@
-import random
-
 CACHE = {}
 
 
-def google_search(query):
+def google_search(query: str):
     """
-    SAFE MODE:
-    - If no API key or failure → returns simulated but realistic signals
-    - Ensures system NEVER outputs empty data (important for demo)
+    Deterministic demo search.
+    Because the dataset is anonymized, this simulates different public-footprint levels
+    without pretending to be a real lookup.
     """
+    digits = "".join(ch for ch in query if ch.isdigit())
+    bucket = int(digits) % 4 if digits else 0
 
-    # 🔥 DEMO MODE (always works)
+    if bucket == 0:
+        return [
+            {
+                "title": f"{query} - LinkedIn profile",
+                "snippet": "Active professional profile with role history and company references",
+            },
+            {
+                "title": f"{query} - business registry result",
+                "snippet": "Possible director or founder signal with registration reference",
+            },
+            {
+                "title": f"{query} - public web mention",
+                "snippet": "Multiple identity matches across public sources",
+            },
+        ]
+
+    if bucket == 1:
+        return [
+            {
+                "title": f"{query} - directory result",
+                "snippet": "Partial profile with employment mention",
+            },
+            {
+                "title": f"{query} - web mention",
+                "snippet": "Limited but usable public footprint",
+            },
+        ]
+
+    if bucket == 2:
+        return [
+            {
+                "title": f"{query} - sparse result",
+                "snippet": "Very limited public information available",
+            }
+        ]
+
     return [
         {
-            "title": f"{query} - LinkedIn profile",
-            "snippet": "Engineer at company, based in Europe, active professional profile"
+            "title": f"{query} - registry reference",
+            "snippet": "Possible company or banking relationship signal",
         },
         {
-            "title": f"{query} - web presence",
-            "snippet": "Possible employment income, banking relationship, social media traces"
-        }
+            "title": f"{query} - social mention",
+            "snippet": "Some public presence but fragmented identity trail",
+        },
     ]
 
 
-def analyze_person(identifier, country):
-    """
-    Ghost detection based on weak public footprint signals
-    """
-
+def analyze_person(identifier: str, country: str):
     key = f"{identifier}_{country}"
-
     if key in CACHE:
         return CACHE[key]
 
     results = google_search(f"{identifier} {country}")
-
     text = " ".join(
         (r.get("title", "") + " " + r.get("snippet", "")).lower()
         for r in results
     )
 
-    # -------------------------
-    # SIGNAL EXTRACTION
-    # -------------------------
-    name_hits = text.count(str(identifier).lower())
-
     linkedin_hits = text.count("linkedin")
+    registry_hits = text.count("registry") + text.count("registration")
+    company_hits = text.count("company") + text.count("director") + text.count("founder")
+    employment_hits = text.count("employment") + text.count("professional") + text.count("role")
+    banking_hits = text.count("bank") + text.count("banking") + text.count("account")
+    total_results = len(results)
 
-    employment_hits = sum(
-        k in text for k in [
-            "engineer", "company", "ceo", "founder",
-            "employment", "bank", "income"
-        ]
+    footprint_score = (
+        linkedin_hits * 12
+        + registry_hits * 10
+        + company_hits * 8
+        + employment_hits * 6
+        + banking_hits * 8
+        + total_results * 8
     )
 
-    total = len(results)
+    ghost_score = max(20, min(85, 90 - footprint_score))
 
-    # -------------------------
-    # GHOST SCORE LOGIC
-    # -------------------------
-    base_noise = random.randint(0, 10)
-
-    ghost_score = 100 - (
-        name_hits * 20 +
-        linkedin_hits * 15 +
-        employment_hits * 10 +
-        total * 5
-    )
-
-    ghost_score = max(10, min(90, ghost_score + base_noise))
-
-    # -------------------------
-    # CONFIDENCE LOGIC
-    # -------------------------
-    confidence = min(
-        100,
-        name_hits * 25 +
-        linkedin_hits * 20 +
-        total * 15 +
-        employment_hits * 10
-    )
-
-    confidence = max(20, confidence)
+    if ghost_score <= 35:
+        summary = "strong public footprint"
+    elif ghost_score <= 55:
+        summary = "medium public footprint"
+    else:
+        summary = "weak public footprint"
 
     output = {
         "ghost_score": ghost_score,
-        "confidence": confidence,
-        "results": total
+        "summary": summary,
+        "results": total_results,
     }
-
     CACHE[key] = output
     return output
