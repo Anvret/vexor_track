@@ -1,140 +1,122 @@
 from pathlib import Path
 import pandas as pd
+from finder import analyze_person
 
 
-# ====== CONFIG ======
-DATASET_FILE = "bcn_hack.csv"
+# =====================
+# LOAD DATA
+# =====================
+def load_dataset(path):
+    file = Path(path)
+    if not file.exists():
+        raise FileNotFoundError("CSV not found")
+    return pd.read_csv(file)
 
 
-# ====== LOAD DATASET ======
-def load_dataset(file_path: str) -> pd.DataFrame:
-    path = Path(file_path)
-
-    if not path.exists():
-        raise FileNotFoundError(
-            f"Dataset introuvable: {file_path}\n"
-            "Mets le fichier CSV dans le dossier du projet avec le nom 'bcn_hack.csv'."
-        )
-
-    return pd.read_csv(path)
-
-
-# ====== IMPROVED SCORING ======
+# =====================
+# CORE SCORING
+# =====================
 def compute_scores(row):
-    # Recovery score (real ability to pay)
-    if row["legal_asset_finding"] == "employment_income":
-        recovery = 90
-    elif row["legal_asset_finding"] == "bank_account":
-        recovery = 80
-    elif row["legal_asset_finding"] == "vehicle":
-        recovery = 60
-    elif row["legal_asset_finding"] == "pension":
-        recovery = 50
-    else:
-        recovery = 10  # lower than before
 
-    # Contact score
-    if row["call_outcome"] == "voicemail":
-        contact = 50
-    elif row["call_outcome"] == "busy":
-        contact = 40
-    elif row["call_outcome"] == "rings_out":
-        contact = 20
-    elif row["call_outcome"] == "invalid_number":
-        contact = 5
-    elif row["call_outcome"] == "not_debtor":
-        contact = 10
-    else:
-        contact = 25
+    # ---------------------
+    # RECOVERY
+    # ---------------------
+    recovery_map = {
+        "employment_income": 90,
+        "bank_account": 80,
+        "vehicle": 60,
+        "pension": 50
+    }
+    recovery = recovery_map.get(row["legal_asset_finding"], 10)
 
-    # Debt value
+    # ---------------------
+    # CONTACT
+    # ---------------------
+    contact_map = {
+        "voicemail": 50,
+        "busy": 40,
+        "rings_out": 20,
+        "invalid_number": 5,
+        "not_debtor": 10
+    }
+    contact = contact_map.get(row["call_outcome"], 25)
+
+    # ---------------------
+    # DEBT VALUE
+    # ---------------------
     debt = row["debt_eur"]
-    if debt > 50000:
-        debt_score = 90
-    elif debt > 20000:
-        debt_score = 70
-    elif debt > 10000:
-        debt_score = 50
-    else:
-        debt_score = 30
+    debt_score = (
+        90 if debt > 50000 else
+        70 if debt > 20000 else
+        50 if debt > 10000 else
+        30
+    )
 
-    # FINAL PRIORITY (balanced)
-    priority = int((0.5 * recovery) + (0.3 * debt_score) + (0.2 * contact))
+    # ---------------------
+    # ENRICHMENT LAYER
+    # ---------------------
+    enrichment = analyze_person(row["case_id"], row["country"])
 
-    return recovery, contact, priority
+    ghost_score = enrichment["ghost_score"]
+    confidence = enrichment["confidence"]
 
+    # ---------------------
+    # FINAL PRIORITY SCORE
+    # ---------------------
+    priority = int(
+        0.35 * recovery +
+        0.25 * debt_score +
+        0.15 * contact +
+        0.25 * (100 - ghost_score)
+    )
 
-# ====== SMART ACTION ======
-def recommend_action(row):
-    recovery, contact, priority = compute_scores(row)
-
-    if recovery > 70:
-        return "Strong recovery -> pursue aggressively"
-
-    if recovery < 30 and contact < 20:
-        return "Low value -> deprioritize"
-
-    if contact < 15:
-        return "Enrich data before contact"
-
-    return "Monitor / soft approach"
+    return recovery, contact, debt_score, priority, ghost_score, confidence
 
 
-# ====== HUMAN-STYLE EXPLANATION ======
-def explain_case(row):
-    recovery, contact, priority = compute_scores(row)
-
-    insights = []
-
-    if recovery > 70:
-        insights.append("Assets detected (income or account)")
-    elif recovery < 30:
-        insights.append("No clear assets found")
-
-    if contact < 15:
-        insights.append("Contact data is weak")
-
-    if row["debt_eur"] > 20000:
-        insights.append("High financial exposure")
-
-    if row["call_outcome"] in ["rings_out", "invalid_number"]:
-        insights.append("Repeated failed contact attempts")
-
-    if not insights:
-        insights.append("Limited but usable signal")
-
-    return " | ".join(insights)
-
-
-# ====== MAIN ======
+# =====================
+# MAIN
+# =====================
 def main():
-    df = load_dataset(DATASET_FILE)
 
-    df["recovery_score"] = df.apply(lambda row: compute_scores(row)[0], axis=1)
-    df["contact_score"] = df.apply(lambda row: compute_scores(row)[1], axis=1)
-    df["priority_score"] = df.apply(lambda row: compute_scores(row)[2], axis=1)
-    df["action"] = df.apply(recommend_action, axis=1)
-    df["explanation"] = df.apply(explain_case, axis=1)
+    df = load_dataset("bcn_hack.csv")
 
-    print("\nTOP 10 HIGH-VALUE CASES (SMART PRIORITIZATION)\n")
+    # 🔥 FAST MODE FOR DEMO
+    df = df.head(10)
 
-    top_cases = df.sort_values(by="priority_score", ascending=False)
+    computed = df.apply(lambda r: pd.Series(compute_scores(r)), axis=1)
 
-    for _, row in top_cases.head(10).iterrows():
+    computed.columns = [
+        "recovery_score",
+        "contact_score",
+        "debt_score",
+        "priority_score",
+        "ghost_score",
+        "confidence"
+    ]
+
+    df = pd.concat([df, computed], axis=1)
+
+    df["final_score"] = df["priority_score"] * (df["confidence"] / 100)
+
+    top = df.sort_values("final_score", ascending=False)
+
+    print("\n=== TOP CASES ===\n")
+
+    for _, row in top.head(10).iterrows():
         print(f"""
 CASE {row['case_id']} ({row['country']})
 Debt: €{row['debt_eur']}
 
-Scores:
-- Recovery: {row['recovery_score']}
-- Contact: {row['contact_score']}
-- Priority: {row['priority_score']}
+Recovery: {row['recovery_score']}
+Contact: {row['contact_score']}
+Debt Score: {row['debt_score']}
+Ghost Score: {row['ghost_score']}
+Confidence: {row['confidence']}
+Final Score: {row['final_score']:.2f}
 
-Insight:
-{row['explanation']}
+Decision:
+{"ENRICH / INVESTIGATE" if row["ghost_score"] > 60 else "PURSUE DIRECTLY"}
 
-Action:
-{row['action']}
 ----------------------------------------
 """)
 
