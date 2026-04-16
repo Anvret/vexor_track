@@ -1,4 +1,3 @@
-import pandas as pd
 CACHE = {}
 
 
@@ -95,10 +94,33 @@ def analyze_person(identifier: str, country: str):
     else:
         summary = "weak public footprint"
 
+    signals_found = []
+    if linkedin_hits:
+        signals_found.append("LinkedIn mention")
+    if registry_hits:
+        signals_found.append("Registry mention")
+    if company_hits:
+        signals_found.append("Company-related signal")
+    if employment_hits:
+        signals_found.append("Employment-related signal")
+    if banking_hits:
+        signals_found.append("Banking-related signal")
+    if not signals_found:
+        signals_found.append("No strong public signal found")
+
+    if ghost_score <= 35:
+        enrichment_recommendation = "Proceed with targeted enrichment"
+    elif ghost_score <= 55:
+        enrichment_recommendation = "Manual verification recommended"
+    else:
+        enrichment_recommendation = "Limited footprint; deprioritize enrichment"
+
     output = {
         "ghost_score": ghost_score,
         "summary": summary,
         "results": total_results,
+        "signals_found": signals_found,
+        "enrichment_recommendation": enrichment_recommendation,
     }
     CACHE[key] = output
     return output
