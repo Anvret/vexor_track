@@ -10,6 +10,7 @@ DATASET_FILE = "bcn_hack.csv"
 # Set FAST_MODE = False to process the full dataset.
 FAST_MODE = False  # Set to True only for quick demos
 FAST_MODE_ROWS = 10
+OUTPUT_FILE = "scored_cases.csv"
 
 
 # =====================
@@ -57,7 +58,6 @@ def compute_scores(row: pd.Series):
     # ENRICHMENT LAYER
     enrichment = analyze_person(str(row["case_id"]), str(row["country"]))
     ghost_score = enrichment.get("ghost_score", 50)
-    confidence = enrichment.get("confidence", 20)
 
     # FINAL PRIORITY SCORE
     priority_score = int(
@@ -73,7 +73,6 @@ def compute_scores(row: pd.Series):
         "debt_score": debt_score,
         "priority_score": priority_score,
         "ghost_score": ghost_score,
-        "confidence": confidence,
     })
 
 
@@ -104,7 +103,7 @@ def main():
     computed = df.apply(compute_scores, axis=1)
     df = pd.concat([df, computed], axis=1)
 
-    df["final_score"] = (df["priority_score"] * (df["confidence"] / 100)).round(2)
+    df["final_score"] = df["priority_score"]
     df["decision"] = df.apply(make_decision, axis=1)
 
     top = df.sort_values("final_score", ascending=False)
@@ -119,12 +118,31 @@ def main():
             f"Contact Score: {row['contact_score']}\n"
             f"Debt Score: {row['debt_score']}\n"
             f"Ghost Score: {row['ghost_score']}\n"
-            f"Confidence: {row['confidence']}\n"
             f"Priority Score: {row['priority_score']}\n"
             f"Final Score: {row['final_score']:.2f}\n\n"
             f"Decision: {row['decision']}\n"
             "----------------------------------------"
         )
+
+    export_columns = [
+        "case_id",
+        "country",
+        "debt_eur",
+        "debt_origin",
+        "debt_age_months",
+        "call_attempts",
+        "call_outcome",
+        "legal_asset_finding",
+        "recovery_score",
+        "contact_score",
+        "debt_score",
+        "ghost_score",
+        "priority_score",
+        "final_score",
+        "decision",
+    ]
+    top[export_columns].to_csv(OUTPUT_FILE, index=False)
+    print(f"\nSaved scored output to {OUTPUT_FILE}\n")
 
 
 if __name__ == "__main__":
