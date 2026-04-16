@@ -1,101 +1,101 @@
-case_id,country,debt_eur,debt_origin,debt_age_months,call_attempts,call_outcome,legal_asset_finding,recovery_score,contact_score,debt_score,ghost_score,priority_score,final_score,decision
-C011,PT,63271,sme_loan,25,5,voicemail,employment_income,90,50,90,40,76,76,PURSUE DIRECTLY
-C092,PT,7998,credit_card,8,7,rings_out,employment_income,90,20,30,20,62,62,PURSUE DIRECTLY
-C069,DK,16730,personal_loan,18,3,busy,employment_income,90,40,50,60,60,60,PURSUE DIRECTLY
-C095,PT,4345,personal_loan,26,7,rings_out,employment_income,90,20,30,40,57,57,PURSUE DIRECTLY
-C054,NL,69432,sme_loan,32,2,not_debtor,bank_account,80,10,90,82,56,56,ENRICH / INVESTIGATE
-C025,DE,988,utility,16,4,voicemail,employment_income,90,50,30,60,56,56,PURSUE DIRECTLY
-C053,ES,17502,personal_loan,36,6,rings_out,bank_account,80,20,50,60,53,53,PURSUE DIRECTLY
-C083,PT,1799,utility,6,3,rings_out,bank_account,80,20,30,40,53,53,PURSUE DIRECTLY
-C042,PT,13023,consumer_loan,23,4,rings_out,employment_income,90,20,50,82,51,51,ENRICH / INVESTIGATE
-C056,ES,1162,telecom,21,4,not_debtor,vehicle,60,10,30,20,50,50,VERIFY CONTACT DATA
-C048,BE,4417,consumer_loan,4,1,invalid_number,vehicle,60,5,30,20,49,49,VERIFY CONTACT DATA
-C072,DE,84057,mortgage_shortfall,29,2,never_owed,no_assets_found,10,25,90,20,49,49,MONITOR / SOFT APPROACH
-C028,IT,436,telecom,25,7,rings_out,pension,50,20,30,20,48,48,MONITOR / SOFT APPROACH
-C041,FR,1522,telecom,9,4,rings_out,bank_account,80,20,30,60,48,48,PURSUE DIRECTLY
-C084,PL,1162,telecom,16,1,relative,pension,50,25,30,20,48,48,MONITOR / SOFT APPROACH
-C013,PT,1636,utility,10,2,invalid_number,bank_account,80,5,30,60,46,46,PURSUE DIRECTLY
-C018,DE,7378,consumer_loan,21,2,busy,bank_account,80,40,30,82,46,46,ENRICH / INVESTIGATE
-C058,PL,15913,credit_card,8,2,invalid_number,bank_account,80,5,50,82,45,45,ENRICH / INVESTIGATE
-C076,PT,23128,auto_loan,15,1,relative,assets_not_seizable,10,25,70,20,44,44,MONITOR / SOFT APPROACH
-C100,IT,43540,sme_loan,15,3,denies_identity,no_assets_found,10,25,70,20,44,44,MONITOR / SOFT APPROACH
-C079,ES,84236,mortgage_shortfall,28,3,denies_identity,assets_not_seizable,10,25,90,40,44,44,MONITOR / SOFT APPROACH
-C091,DE,52735,sme_loan,28,4,relative,assets_not_seizable,10,25,90,40,44,44,MONITOR / SOFT APPROACH
-C035,ES,20954,personal_loan,4,4,voicemail,no_assets_found,10,50,70,40,43,43,MONITOR / SOFT APPROACH
-C077,IT,10024,credit_card,28,5,rings_out,pension,50,20,50,60,43,43,MONITOR / SOFT APPROACH
-C088,FR,13587,credit_card,14,2,voicemail,no_assets_found,10,50,50,20,43,43,MONITOR / SOFT APPROACH
-C032,ES,21166,personal_loan,12,2,not_debtor,assets_not_seizable,10,10,70,20,42,42,VERIFY CONTACT DATA
-C024,PL,11778,credit_card,31,1,wont_pay,assets_not_seizable,10,25,50,20,39,39,MONITOR / SOFT APPROACH
-C023,PT,22548,personal_loan,31,5,rings_out,no_assets_found,10,20,70,40,39,39,MONITOR / SOFT APPROACH
-C004,PT,11543,consumer_loan,13,6,rings_out,no_assets_found,10,20,50,20,39,39,MONITOR / SOFT APPROACH
-C049,PT,66014,sme_loan,31,4,rings_out,assets_not_seizable,10,20,90,60,39,39,MONITOR / SOFT APPROACH
-C067,ES,15464,personal_loan,34,2,voicemail,assets_not_seizable,10,50,50,40,38,38,MONITOR / SOFT APPROACH
-C080,PT,1876,telecom,20,2,voicemail,assets_not_seizable,10,50,30,20,38,38,MONITOR / SOFT APPROACH
-C019,DE,10646,credit_card,26,5,voicemail,no_assets_found,10,50,50,40,38,38,MONITOR / SOFT APPROACH
-C020,DE,12351,credit_card,5,1,not_debtor,no_assets_found,10,10,50,20,37,37,VERIFY CONTACT DATA
-C008,PT,13089,credit_card,30,1,invalid_number,no_assets_found,10,5,50,20,36,36,VERIFY CONTACT DATA
-C031,PT,12188,credit_card,29,5,rings_out,no_assets_found,10,20,50,40,34,34,MONITOR / SOFT APPROACH
-C096,PT,9018,consumer_loan,27,3,rings_out,not_initiated,10,20,30,20,34,34,MONITOR / SOFT APPROACH
-C093,ES,23553,personal_loan,19,3,rings_out,assets_not_seizable,10,20,70,60,34,34,MONITOR / SOFT APPROACH
-C007,FR,14883,auto_loan,19,3,rings_out,no_assets_found,10,20,50,40,34,34,MONITOR / SOFT APPROACH
-C039,IT,17005,credit_card,14,1,denies_identity,not_initiated,10,25,50,40,34,34,MONITOR / SOFT APPROACH
-C040,PL,6649,consumer_loan,36,7,rings_out,multiple,10,20,30,20,34,34,MONITOR / SOFT APPROACH
-C037,PT,22004,personal_loan,24,4,needs_proof,no_assets_found,10,25,70,60,34,34,MONITOR / SOFT APPROACH
-C085,PT,28359,auto_loan,13,2,hung_up,assets_not_seizable,10,25,70,60,34,34,MONITOR / SOFT APPROACH
-C012,PT,9631,credit_card,21,4,rings_out,assets_not_seizable,10,20,30,20,34,34,MONITOR / SOFT APPROACH
-C015,PT,8039,credit_card,33,4,voicemail,no_assets_found,10,50,30,40,33,33,MONITOR / SOFT APPROACH
-C068,DE,7763,consumer_loan,23,4,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA
-C052,BE,696,telecom,33,3,not_debtor,assets_not_seizable,10,10,30,20,32,32,VERIFY CONTACT DATA
-C001,ES,21077,personal_loan,31,1,not_debtor,assets_not_seizable,10,10,70,60,32,32,VERIFY CONTACT DATA
-C003,ES,2384,telecom,6,3,busy,no_assets_found,10,40,30,40,32,32,MONITOR / SOFT APPROACH
-C044,IT,9514,auto_loan,19,4,not_debtor,assets_not_seizable,10,10,30,20,32,32,VERIFY CONTACT DATA
-C016,DE,1400,telecom,18,2,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA
-C036,DK,1325,telecom,17,4,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA
-C047,PT,17699,credit_card,29,1,invalid_number,not_initiated,10,5,50,40,31,31,VERIFY CONTACT DATA
-C057,IT,23537,personal_loan,19,2,invalid_number,no_assets_found,10,5,70,60,31,31,VERIFY CONTACT DATA
-C060,IT,854,utility,9,1,invalid_number,no_assets_found,10,5,30,20,31,31,VERIFY CONTACT DATA
-C064,IT,1505,telecom,33,2,invalid_number,no_assets_found,10,5,30,20,31,31,VERIFY CONTACT DATA
-C063,PL,413,telecom,30,6,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH
-C099,IT,1633,telecom,33,4,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH
-C097,PT,12681,credit_card,4,4,never_owed,no_assets_found,10,25,50,60,29,29,MONITOR / SOFT APPROACH
-C027,FR,7956,credit_card,27,4,denies_identity,no_assets_found,10,25,30,40,29,29,MONITOR / SOFT APPROACH
-C029,PT,18286,auto_loan,11,3,relative,no_assets_found,10,25,50,60,29,29,MONITOR / SOFT APPROACH
-C071,PT,2139,telecom,5,6,rings_out,no_assets_found,10,20,30,40,29,29,MONITOR / SOFT APPROACH
-C051,PT,9665,credit_card,11,4,payment_plan,no_assets_found,10,25,30,40,29,29,MONITOR / SOFT APPROACH
-C059,PT,9183,credit_card,21,5,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH
-C045,DK,12015,consumer_loan,8,6,rings_out,no_assets_found,10,20,50,60,29,29,MONITOR / SOFT APPROACH
-C055,PT,2094,telecom,32,5,rings_out,no_assets_found,10,20,30,40,29,29,MONITOR / SOFT APPROACH
-C062,DE,30739,auto_loan,13,4,rings_out,no_assets_found,10,20,70,82,28,28,ENRICH / INVESTIGATE
-C078,PL,14935,auto_loan,33,4,voicemail,no_assets_found,10,50,50,82,28,28,ENRICH / INVESTIGATE
-C043,ES,8025,credit_card,13,1,not_debtor,no_assets_found,10,10,30,40,27,27,VERIFY CONTACT DATA
-C075,PT,1516,utility,31,2,not_debtor,not_initiated,10,10,30,40,27,27,VERIFY CONTACT DATA
-C081,NL,18411,personal_loan,5,1,invalid_number,not_initiated,10,5,50,60,26,26,VERIFY CONTACT DATA
-C073,PT,18315,personal_loan,12,1,invalid_number,no_assets_found,10,5,50,60,26,26,VERIFY CONTACT DATA
-C090,DE,21962,personal_loan,5,2,invalid_number,no_assets_found,10,5,70,82,26,26,ENRICH / INVESTIGATE
-C087,NL,8642,credit_card,33,2,invalid_number,no_assets_found,10,5,30,40,26,26,VERIFY CONTACT DATA
-C009,PT,1119,telecom,14,4,rings_out,no_assets_found,10,20,30,60,24,24,MONITOR / SOFT APPROACH
-C089,PT,6866,credit_card,23,3,rings_out,no_assets_found,10,20,30,60,24,24,MONITOR / SOFT APPROACH
-C061,PT,7942,personal_loan,18,6,rings_out,assets_not_seizable,10,20,30,60,24,24,MONITOR / SOFT APPROACH
-C021,ES,1219,telecom,15,7,rings_out,assets_not_seizable,10,20,30,60,24,24,MONITOR / SOFT APPROACH
-C065,PT,3540,credit_card,17,4,denies_identity,assets_not_seizable,10,25,30,60,24,24,MONITOR / SOFT APPROACH
-C030,PT,19617,personal_loan,23,6,rings_out,no_assets_found,10,20,50,82,23,23,ENRICH / INVESTIGATE
-C082,FR,12967,credit_card,18,3,rings_out,assets_not_seizable,10,20,50,82,23,23,ENRICH / INVESTIGATE
-C094,PT,12882,personal_loan,11,7,rings_out,assets_not_seizable,10,20,50,82,23,23,ENRICH / INVESTIGATE
-C098,IT,17562,credit_card,10,6,rings_out,multiple,10,20,50,82,23,23,ENRICH / INVESTIGATE
-C010,PT,1044,utility,5,3,voicemail,assets_not_seizable,10,50,30,82,23,23,ENRICH / INVESTIGATE
-C017,FR,246,telecom,16,4,not_debtor,assets_not_seizable,10,10,30,60,22,22,VERIFY CONTACT DATA
-C006,PT,13448,credit_card,6,3,not_debtor,no_assets_found,10,10,50,82,22,22,ENRICH / INVESTIGATE
-C005,ES,5676,credit_card,6,2,invalid_number,assets_not_seizable,10,5,30,60,21,21,VERIFY CONTACT DATA
-C034,PL,12084,consumer_loan,23,2,invalid_number,no_assets_found,10,5,50,82,21,21,ENRICH / INVESTIGATE
-C033,ES,1061,utility,28,1,invalid_number,assets_not_seizable,10,5,30,60,21,21,VERIFY CONTACT DATA
-C074,IT,8455,consumer_loan,5,2,busy,no_assets_found,10,40,30,82,21,21,ENRICH / INVESTIGATE
-C066,PT,997,utility,5,7,rings_out,assets_not_seizable,10,20,30,82,18,18,ENRICH / INVESTIGATE
-C070,IT,1048,telecom,21,6,rings_out,no_assets_found,10,20,30,82,18,18,ENRICH / INVESTIGATE
-C022,PT,1237,telecom,6,3,rings_out,not_initiated,10,20,30,82,18,18,ENRICH / INVESTIGATE
-C050,ES,870,telecom,33,3,rings_out,no_assets_found,10,20,30,82,18,18,ENRICH / INVESTIGATE
-C086,PT,4068,consumer_loan,34,3,rings_out,assets_not_seizable,10,20,30,82,18,18,ENRICH / INVESTIGATE
-C026,NL,290,utility,31,1,not_debtor,not_initiated,10,10,30,82,17,17,ENRICH / INVESTIGATE
-C038,PT,9238,consumer_loan,32,2,not_debtor,assets_not_seizable,10,10,30,82,17,17,ENRICH / INVESTIGATE
-C002,PL,6665,personal_loan,8,2,not_debtor,no_assets_found,10,10,30,82,17,17,ENRICH / INVESTIGATE
-C014,PT,9268,auto_loan,34,1,invalid_number,assets_not_seizable,10,5,30,82,16,16,ENRICH / INVESTIGATE
-C046,ES,1048,utility,16,2,invalid_number,no_assets_found,10,5,30,82,16,16,ENRICH / INVESTIGATE
+case_id,country,debt_eur,debt_origin,debt_age_months,call_attempts,call_outcome,legal_asset_finding,recovery_score,contact_score,debt_score,ghost_score,priority_score,final_score,decision,reasoning
+C011,PT,63271,sme_loan,25,5,voicemail,employment_income,90,50,90,40,76,76,PURSUE DIRECTLY,"strong recoverability, good contactability, high debt value, moderate public footprint"
+C092,PT,7998,credit_card,8,7,rings_out,employment_income,90,20,30,20,62,62,PURSUE DIRECTLY,"strong recoverability, average contactability, low debt value, strong public footprint"
+C069,DK,16730,personal_loan,18,3,busy,employment_income,90,40,50,60,60,60,PURSUE DIRECTLY,"strong recoverability, average contactability, medium debt value, moderate public footprint"
+C095,PT,4345,personal_loan,26,7,rings_out,employment_income,90,20,30,40,57,57,PURSUE DIRECTLY,"strong recoverability, average contactability, low debt value, moderate public footprint"
+C054,NL,69432,sme_loan,32,2,not_debtor,bank_account,80,10,90,82,56,56,ENRICH / INVESTIGATE,"strong recoverability, poor contactability, high debt value, weak public footprint"
+C025,DE,988,utility,16,4,voicemail,employment_income,90,50,30,60,56,56,PURSUE DIRECTLY,"strong recoverability, good contactability, low debt value, moderate public footprint"
+C053,ES,17502,personal_loan,36,6,rings_out,bank_account,80,20,50,60,53,53,PURSUE DIRECTLY,"strong recoverability, average contactability, medium debt value, moderate public footprint"
+C083,PT,1799,utility,6,3,rings_out,bank_account,80,20,30,40,53,53,PURSUE DIRECTLY,"strong recoverability, average contactability, low debt value, moderate public footprint"
+C042,PT,13023,consumer_loan,23,4,rings_out,employment_income,90,20,50,82,51,51,ENRICH / INVESTIGATE,"strong recoverability, average contactability, medium debt value, weak public footprint"
+C056,ES,1162,telecom,21,4,not_debtor,vehicle,60,10,30,20,50,50,VERIFY CONTACT DATA,"moderate recoverability, poor contactability, low debt value, strong public footprint"
+C048,BE,4417,consumer_loan,4,1,invalid_number,vehicle,60,5,30,20,49,49,VERIFY CONTACT DATA,"moderate recoverability, poor contactability, low debt value, strong public footprint"
+C072,DE,84057,mortgage_shortfall,29,2,never_owed,no_assets_found,10,25,90,20,49,49,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, strong public footprint"
+C028,IT,436,telecom,25,7,rings_out,pension,50,20,30,20,48,48,MONITOR / SOFT APPROACH,"moderate recoverability, average contactability, low debt value, strong public footprint"
+C041,FR,1522,telecom,9,4,rings_out,bank_account,80,20,30,60,48,48,PURSUE DIRECTLY,"strong recoverability, average contactability, low debt value, moderate public footprint"
+C084,PL,1162,telecom,16,1,relative,pension,50,25,30,20,48,48,MONITOR / SOFT APPROACH,"moderate recoverability, average contactability, low debt value, strong public footprint"
+C013,PT,1636,utility,10,2,invalid_number,bank_account,80,5,30,60,46,46,PURSUE DIRECTLY,"strong recoverability, poor contactability, low debt value, moderate public footprint"
+C018,DE,7378,consumer_loan,21,2,busy,bank_account,80,40,30,82,46,46,ENRICH / INVESTIGATE,"strong recoverability, average contactability, low debt value, weak public footprint"
+C058,PL,15913,credit_card,8,2,invalid_number,bank_account,80,5,50,82,45,45,ENRICH / INVESTIGATE,"strong recoverability, poor contactability, medium debt value, weak public footprint"
+C076,PT,23128,auto_loan,15,1,relative,assets_not_seizable,10,25,70,20,44,44,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, strong public footprint"
+C100,IT,43540,sme_loan,15,3,denies_identity,no_assets_found,10,25,70,20,44,44,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, strong public footprint"
+C079,ES,84236,mortgage_shortfall,28,3,denies_identity,assets_not_seizable,10,25,90,40,44,44,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C091,DE,52735,sme_loan,28,4,relative,assets_not_seizable,10,25,90,40,44,44,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C035,ES,20954,personal_loan,4,4,voicemail,no_assets_found,10,50,70,40,43,43,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, high debt value, moderate public footprint"
+C077,IT,10024,credit_card,28,5,rings_out,pension,50,20,50,60,43,43,MONITOR / SOFT APPROACH,"moderate recoverability, average contactability, medium debt value, moderate public footprint"
+C088,FR,13587,credit_card,14,2,voicemail,no_assets_found,10,50,50,20,43,43,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, medium debt value, strong public footprint"
+C032,ES,21166,personal_loan,12,2,not_debtor,assets_not_seizable,10,10,70,20,42,42,VERIFY CONTACT DATA,"weak recoverability, poor contactability, high debt value, strong public footprint"
+C024,PL,11778,credit_card,31,1,wont_pay,assets_not_seizable,10,25,50,20,39,39,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, strong public footprint"
+C023,PT,22548,personal_loan,31,5,rings_out,no_assets_found,10,20,70,40,39,39,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C004,PT,11543,consumer_loan,13,6,rings_out,no_assets_found,10,20,50,20,39,39,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, strong public footprint"
+C049,PT,66014,sme_loan,31,4,rings_out,assets_not_seizable,10,20,90,60,39,39,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C067,ES,15464,personal_loan,34,2,voicemail,assets_not_seizable,10,50,50,40,38,38,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, medium debt value, moderate public footprint"
+C080,PT,1876,telecom,20,2,voicemail,assets_not_seizable,10,50,30,20,38,38,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, low debt value, strong public footprint"
+C019,DE,10646,credit_card,26,5,voicemail,no_assets_found,10,50,50,40,38,38,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, medium debt value, moderate public footprint"
+C020,DE,12351,credit_card,5,1,not_debtor,no_assets_found,10,10,50,20,37,37,VERIFY CONTACT DATA,"weak recoverability, poor contactability, medium debt value, strong public footprint"
+C008,PT,13089,credit_card,30,1,invalid_number,no_assets_found,10,5,50,20,36,36,VERIFY CONTACT DATA,"weak recoverability, poor contactability, medium debt value, strong public footprint"
+C031,PT,12188,credit_card,29,5,rings_out,no_assets_found,10,20,50,40,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C096,PT,9018,consumer_loan,27,3,rings_out,not_initiated,10,20,30,20,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, strong public footprint"
+C093,ES,23553,personal_loan,19,3,rings_out,assets_not_seizable,10,20,70,60,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C007,FR,14883,auto_loan,19,3,rings_out,no_assets_found,10,20,50,40,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C039,IT,17005,credit_card,14,1,denies_identity,not_initiated,10,25,50,40,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C040,PL,6649,consumer_loan,36,7,rings_out,multiple,10,20,30,20,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, strong public footprint"
+C037,PT,22004,personal_loan,24,4,needs_proof,no_assets_found,10,25,70,60,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C085,PT,28359,auto_loan,13,2,hung_up,assets_not_seizable,10,25,70,60,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, high debt value, moderate public footprint"
+C012,PT,9631,credit_card,21,4,rings_out,assets_not_seizable,10,20,30,20,34,34,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, strong public footprint"
+C015,PT,8039,credit_card,33,4,voicemail,no_assets_found,10,50,30,40,33,33,MONITOR / SOFT APPROACH,"weak recoverability, good contactability, low debt value, moderate public footprint"
+C068,DE,7763,consumer_loan,23,4,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C052,BE,696,telecom,33,3,not_debtor,assets_not_seizable,10,10,30,20,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C001,ES,21077,personal_loan,31,1,not_debtor,assets_not_seizable,10,10,70,60,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, high debt value, moderate public footprint"
+C003,ES,2384,telecom,6,3,busy,no_assets_found,10,40,30,40,32,32,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C044,IT,9514,auto_loan,19,4,not_debtor,assets_not_seizable,10,10,30,20,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C016,DE,1400,telecom,18,2,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C036,DK,1325,telecom,17,4,not_debtor,no_assets_found,10,10,30,20,32,32,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C047,PT,17699,credit_card,29,1,invalid_number,not_initiated,10,5,50,40,31,31,VERIFY CONTACT DATA,"weak recoverability, poor contactability, medium debt value, moderate public footprint"
+C057,IT,23537,personal_loan,19,2,invalid_number,no_assets_found,10,5,70,60,31,31,VERIFY CONTACT DATA,"weak recoverability, poor contactability, high debt value, moderate public footprint"
+C060,IT,854,utility,9,1,invalid_number,no_assets_found,10,5,30,20,31,31,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C064,IT,1505,telecom,33,2,invalid_number,no_assets_found,10,5,30,20,31,31,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, strong public footprint"
+C063,PL,413,telecom,30,6,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C099,IT,1633,telecom,33,4,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C097,PT,12681,credit_card,4,4,never_owed,no_assets_found,10,25,50,60,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C027,FR,7956,credit_card,27,4,denies_identity,no_assets_found,10,25,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C029,PT,18286,auto_loan,11,3,relative,no_assets_found,10,25,50,60,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C071,PT,2139,telecom,5,6,rings_out,no_assets_found,10,20,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C051,PT,9665,credit_card,11,4,payment_plan,no_assets_found,10,25,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C059,PT,9183,credit_card,21,5,rings_out,assets_not_seizable,10,20,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C045,DK,12015,consumer_loan,8,6,rings_out,no_assets_found,10,20,50,60,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, medium debt value, moderate public footprint"
+C055,PT,2094,telecom,32,5,rings_out,no_assets_found,10,20,30,40,29,29,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C062,DE,30739,auto_loan,13,4,rings_out,no_assets_found,10,20,70,82,28,28,ENRICH / INVESTIGATE,"weak recoverability, average contactability, high debt value, weak public footprint"
+C078,PL,14935,auto_loan,33,4,voicemail,no_assets_found,10,50,50,82,28,28,ENRICH / INVESTIGATE,"weak recoverability, good contactability, medium debt value, weak public footprint"
+C043,ES,8025,credit_card,13,1,not_debtor,no_assets_found,10,10,30,40,27,27,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C075,PT,1516,utility,31,2,not_debtor,not_initiated,10,10,30,40,27,27,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C081,NL,18411,personal_loan,5,1,invalid_number,not_initiated,10,5,50,60,26,26,VERIFY CONTACT DATA,"weak recoverability, poor contactability, medium debt value, moderate public footprint"
+C073,PT,18315,personal_loan,12,1,invalid_number,no_assets_found,10,5,50,60,26,26,VERIFY CONTACT DATA,"weak recoverability, poor contactability, medium debt value, moderate public footprint"
+C090,DE,21962,personal_loan,5,2,invalid_number,no_assets_found,10,5,70,82,26,26,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, high debt value, weak public footprint"
+C087,NL,8642,credit_card,33,2,invalid_number,no_assets_found,10,5,30,40,26,26,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C009,PT,1119,telecom,14,4,rings_out,no_assets_found,10,20,30,60,24,24,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C089,PT,6866,credit_card,23,3,rings_out,no_assets_found,10,20,30,60,24,24,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C061,PT,7942,personal_loan,18,6,rings_out,assets_not_seizable,10,20,30,60,24,24,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C021,ES,1219,telecom,15,7,rings_out,assets_not_seizable,10,20,30,60,24,24,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C065,PT,3540,credit_card,17,4,denies_identity,assets_not_seizable,10,25,30,60,24,24,MONITOR / SOFT APPROACH,"weak recoverability, average contactability, low debt value, moderate public footprint"
+C030,PT,19617,personal_loan,23,6,rings_out,no_assets_found,10,20,50,82,23,23,ENRICH / INVESTIGATE,"weak recoverability, average contactability, medium debt value, weak public footprint"
+C082,FR,12967,credit_card,18,3,rings_out,assets_not_seizable,10,20,50,82,23,23,ENRICH / INVESTIGATE,"weak recoverability, average contactability, medium debt value, weak public footprint"
+C094,PT,12882,personal_loan,11,7,rings_out,assets_not_seizable,10,20,50,82,23,23,ENRICH / INVESTIGATE,"weak recoverability, average contactability, medium debt value, weak public footprint"
+C098,IT,17562,credit_card,10,6,rings_out,multiple,10,20,50,82,23,23,ENRICH / INVESTIGATE,"weak recoverability, average contactability, medium debt value, weak public footprint"
+C010,PT,1044,utility,5,3,voicemail,assets_not_seizable,10,50,30,82,23,23,ENRICH / INVESTIGATE,"weak recoverability, good contactability, low debt value, weak public footprint"
+C017,FR,246,telecom,16,4,not_debtor,assets_not_seizable,10,10,30,60,22,22,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C006,PT,13448,credit_card,6,3,not_debtor,no_assets_found,10,10,50,82,22,22,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, medium debt value, weak public footprint"
+C005,ES,5676,credit_card,6,2,invalid_number,assets_not_seizable,10,5,30,60,21,21,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C034,PL,12084,consumer_loan,23,2,invalid_number,no_assets_found,10,5,50,82,21,21,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, medium debt value, weak public footprint"
+C033,ES,1061,utility,28,1,invalid_number,assets_not_seizable,10,5,30,60,21,21,VERIFY CONTACT DATA,"weak recoverability, poor contactability, low debt value, moderate public footprint"
+C074,IT,8455,consumer_loan,5,2,busy,no_assets_found,10,40,30,82,21,21,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C066,PT,997,utility,5,7,rings_out,assets_not_seizable,10,20,30,82,18,18,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C070,IT,1048,telecom,21,6,rings_out,no_assets_found,10,20,30,82,18,18,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C022,PT,1237,telecom,6,3,rings_out,not_initiated,10,20,30,82,18,18,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C050,ES,870,telecom,33,3,rings_out,no_assets_found,10,20,30,82,18,18,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C086,PT,4068,consumer_loan,34,3,rings_out,assets_not_seizable,10,20,30,82,18,18,ENRICH / INVESTIGATE,"weak recoverability, average contactability, low debt value, weak public footprint"
+C026,NL,290,utility,31,1,not_debtor,not_initiated,10,10,30,82,17,17,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, low debt value, weak public footprint"
+C038,PT,9238,consumer_loan,32,2,not_debtor,assets_not_seizable,10,10,30,82,17,17,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, low debt value, weak public footprint"
+C002,PL,6665,personal_loan,8,2,not_debtor,no_assets_found,10,10,30,82,17,17,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, low debt value, weak public footprint"
+C014,PT,9268,auto_loan,34,1,invalid_number,assets_not_seizable,10,5,30,82,16,16,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, low debt value, weak public footprint"
+C046,ES,1048,utility,16,2,invalid_number,no_assets_found,10,5,30,82,16,16,ENRICH / INVESTIGATE,"weak recoverability, poor contactability, low debt value, weak public footprint"

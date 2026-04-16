@@ -90,6 +90,46 @@ def make_decision(row: pd.Series) -> str:
 
 
 # =====================
+# REASONING LAYER
+# =====================
+def build_reasoning(row: pd.Series) -> str:
+    reasons = []
+
+    # Recovery
+    if row["recovery_score"] >= 80:
+        reasons.append("strong recoverability")
+    elif row["recovery_score"] >= 50:
+        reasons.append("moderate recoverability")
+    else:
+        reasons.append("weak recoverability")
+
+    # Contact
+    if row["contact_score"] >= 50:
+        reasons.append("good contactability")
+    elif row["contact_score"] >= 20:
+        reasons.append("average contactability")
+    else:
+        reasons.append("poor contactability")
+
+    # Debt value
+    if row["debt_score"] >= 70:
+        reasons.append("high debt value")
+    elif row["debt_score"] >= 40:
+        reasons.append("medium debt value")
+    else:
+        reasons.append("low debt value")
+
+    # Public footprint
+    if row["ghost_score"] <= 35:
+        reasons.append("strong public footprint")
+    elif row["ghost_score"] <= 60:
+        reasons.append("moderate public footprint")
+    else:
+        reasons.append("weak public footprint")
+
+    return ", ".join(reasons)
+
+# =====================
 # MAIN
 # =====================
 def main():
@@ -105,6 +145,7 @@ def main():
 
     df["final_score"] = df["priority_score"]
     df["decision"] = df.apply(make_decision, axis=1)
+    df["reasoning"] = df.apply(build_reasoning, axis=1)
 
     top = df.sort_values("final_score", ascending=False)
 
@@ -140,6 +181,7 @@ def main():
         "priority_score",
         "final_score",
         "decision",
+        "reasoning",
     ]
     top[export_columns].to_csv(OUTPUT_FILE, index=False)
     print(f"\nSaved scored output to {OUTPUT_FILE}\n")

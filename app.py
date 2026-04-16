@@ -17,7 +17,6 @@ def load_data(path: str) -> pd.DataFrame:
     return pd.read_csv(file)
 
 
-
 def score_badge(score: float) -> str:
     if score >= 70:
         return "High"
@@ -26,53 +25,95 @@ def score_badge(score: float) -> str:
     return "Low"
 
 
-# Human-readable explanation for why a case has a high or low score
-def explain_priority(row: pd.Series) -> str:
-    reasons = []
-
+def explain_priority(row: pd.Series):
     priority_score = float(row.get("priority_score", 0))
     recovery_score = float(row.get("recovery_score", 0))
     contact_score = float(row.get("contact_score", 0))
     debt_score = float(row.get("debt_score", 0))
     ghost_score = float(row.get("ghost_score", 50))
+    debt_amount = float(row.get("debt_eur", 0))
+    debt_age = float(row.get("debt_age_months", 0))
+    call_attempts = float(row.get("call_attempts", 0))
 
     if priority_score >= 70:
-        level = "This case scores high because"
+        score_label = "High"
+        summary = "This case should be reviewed first because several signals are favorable."
     elif priority_score >= 45:
-        level = "This case scores medium because"
+        score_label = "Medium"
+        summary = "This case is interesting, but the signals are mixed."
     else:
-        level = "This case scores low because"
+        score_label = "Low"
+        summary = "This case is less attractive right now because the strongest signals are weak."
+
+    positive_points = []
+    negative_points = []
+    neutral_points = []
 
     if recovery_score >= 80:
-        reasons.append("there is a strong recoverability signal")
-    elif recovery_score <= 20:
-        reasons.append("there is no strong recoverability signal")
+        positive_points.append(f"Recoverability is strong ({int(recovery_score)}/100).")
+    elif recovery_score >= 50:
+        neutral_points.append(f"Recoverability is moderate ({int(recovery_score)}/100).")
+    else:
+        negative_points.append(f"Recoverability is weak ({int(recovery_score)}/100).")
 
     if contact_score >= 50:
-        reasons.append("the debtor seems more reachable than average")
-    elif contact_score <= 10:
-        reasons.append("contactability is very weak")
+        positive_points.append(
+            f"Contactability is good ({int(contact_score)}/100), so outreach may be easier."
+        )
+    elif contact_score >= 20:
+        neutral_points.append(f"Contactability is average ({int(contact_score)}/100).")
+    else:
+        negative_points.append(
+            f"Contactability is poor ({int(contact_score)}/100), so direct action is harder."
+        )
 
     if debt_score >= 75:
-        reasons.append("the economic value of the case is high")
-    elif debt_score <= 30:
-        reasons.append("the debt amount is relatively small")
+        positive_points.append(
+            f"The debt amount is high (€{debt_amount:,.0f}), which makes the case financially important."
+        )
+    elif debt_score >= 40:
+        neutral_points.append(f"The debt amount is medium (€{debt_amount:,.0f}).")
+    else:
+        negative_points.append(f"The debt amount is relatively low (€{debt_amount:,.0f}).")
 
     if ghost_score <= 35:
-        reasons.append("public-footprint signals are relatively strong")
-    elif ghost_score >= 70:
-        reasons.append("very little public-footprint signal was found")
+        positive_points.append(
+            f"Public-footprint signals are strong (ghost score: {int(ghost_score)}), so enrichment looks easier."
+        )
+    elif ghost_score <= 60:
+        neutral_points.append(
+            f"Public-footprint signals are moderate (ghost score: {int(ghost_score)})."
+        )
+    else:
+        negative_points.append(
+            f"Very little public-footprint signal was found (ghost score: {int(ghost_score)})."
+        )
 
-    if "age_penalty" in row.index and float(row["age_penalty"]) >= 10:
-        reasons.append("the debt is older, which reduces urgency")
+    if "age_penalty" in row.index:
+        age_penalty = float(row.get("age_penalty", 0))
+        if age_penalty >= 10:
+            negative_points.append(
+                f"The debt is old ({int(debt_age)} months), which reduces urgency."
+            )
+        elif debt_age > 0:
+            neutral_points.append(f"Debt age is {int(debt_age)} months.")
 
-    if "friction_penalty" in row.index and float(row["friction_penalty"]) >= 8:
-        reasons.append("multiple failed attempts make the case more operationally expensive")
+    if "friction_penalty" in row.index:
+        friction_penalty = float(row.get("friction_penalty", 0))
+        if friction_penalty >= 8:
+            negative_points.append(
+                f"There have already been {int(call_attempts)} call attempts, which increases servicing cost."
+            )
+        elif call_attempts > 0:
+            neutral_points.append(f"There have been {int(call_attempts)} call attempts so far.")
 
-    if not reasons:
-        reasons.append("the available signals are mixed")
-
-    return level + " " + ", ".join(reasons) + "."
+    return {
+        "score_label": score_label,
+        "summary": summary,
+        "positive_points": positive_points,
+        "negative_points": negative_points,
+        "neutral_points": neutral_points,
+    }
 
 
 def main():
@@ -90,9 +131,9 @@ def main():
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total cases", len(df))
-    col2.metric("Avg priority", round(df["priority_score"].mean(), 1))
+    col2.metric("Average priority score", round(df["priority_score"].mean(), 1))
     col3.metric("High priority cases", int((df["priority_score"] >= 70).sum()))
-    col4.metric("Countries", df["country"].nunique())
+    col4.metric("Countries covered", df["country"].nunique())
 
     st.divider()
 
@@ -134,10 +175,10 @@ def main():
         filtered = filtered[filtered["debt_origin"] == selected_origin]
 
     filtered = filtered[
-        (filtered["debt_eur"] >= debt_range[0]) &
-        (filtered["debt_eur"] <= debt_range[1]) &
-        (filtered["priority_score"] >= priority_range[0]) &
-        (filtered["priority_score"] <= priority_range[1])
+        (filtered["debt_eur"] >= debt_range[0])
+        & (filtered["debt_eur"] <= debt_range[1])
+        & (filtered["priority_score"] >= priority_range[0])
+        & (filtered["priority_score"] <= priority_range[1])
     ]
 
     filtered = filtered.sort_values(["final_score", "debt_eur"], ascending=[False, False])
@@ -155,17 +196,21 @@ def main():
         "priority_score",
         "final_score",
         "decision",
+        "linkedin_info",
         "reasoning",
     ]
-    display_columns = [col for col in preferred_display_columns if col in filtered.columns]
 
-    if "reasoning" not in filtered.columns:
-        st.info("The current scored_cases.csv file does not include a reasoning column yet. The app will still work without it.")
+    if "linkedin_info" not in filtered.columns:
+        filtered["linkedin_info"] = "Not available (no enrichment credits)"
+
+    display_columns = [col for col in preferred_display_columns if col in filtered.columns]
+    table_df = filtered[display_columns].copy()
 
     st.dataframe(
-        filtered[display_columns],
-        use_container_width=True,
+        table_df,
+        width="stretch",
         hide_index=True,
+        height=360,
     )
 
     st.divider()
@@ -185,24 +230,47 @@ def main():
     with left:
         st.markdown(f"### Case {case['case_id']}")
         st.write(f"**Country:** {case['country']}")
-        st.write(f"**Debt:** €{case['debt_eur']}")
+        st.write(f"**Debt amount:** €{case['debt_eur']}")
         st.write(f"**Debt origin:** {case['debt_origin']}")
         st.write(f"**Debt age:** {case['debt_age_months']} months")
         st.write(f"**Call attempts:** {case['call_attempts']}")
         st.write(f"**Call outcome:** {case['call_outcome']}")
         st.write(f"**Legal asset finding:** {case['legal_asset_finding']}")
+        if "linkedin_info" in case.index:
+            st.write(f"**LinkedIn enrichment:** {case['linkedin_info']}")
 
     with right:
         st.markdown("### Decision summary")
         st.write(f"**Priority score:** {case['priority_score']} ({score_badge(case['priority_score'])})")
         st.write(f"**Final score:** {case['final_score']}")
         st.write(f"**Decision:** {case['decision']}")
+
+        explanation = explain_priority(case)
+
         st.markdown("### Score explanation")
-        st.write(explain_priority(case))
+        st.write(f"**Score level:** {explanation['score_label']}")
+        st.write(explanation["summary"])
+
+        if explanation["positive_points"]:
+            st.markdown("**What helps this case**")
+            for point in explanation["positive_points"]:
+                st.write(f"- {point}")
+
+        if explanation["negative_points"]:
+            st.markdown("**What hurts this case**")
+            for point in explanation["negative_points"]:
+                st.write(f"- {point}")
+
+        if explanation["neutral_points"]:
+            st.markdown("**Other context**")
+            for point in explanation["neutral_points"]:
+                st.write(f"- {point}")
+
         if "reasoning" in case.index:
-            st.write(f"**Model reasoning:** {case['reasoning']}")
+            st.markdown("### Model reasoning")
+            st.write(case["reasoning"])
         else:
-            st.write("**Model reasoning:** Not available in the current scored output")
+            st.write("Model reasoning is not available in the current scored output.")
 
         extra_cols = [
             "recovery_score",
